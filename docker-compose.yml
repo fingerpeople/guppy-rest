@@ -1,25 +1,11 @@
 version: "3.2"
 
 services:
-    # database_1:
-    #     container_name: database_1
-    #     image: cockroachdb/cockroach:latest
-    #     volumes:
-    #     - ./database:/cockroach/cockroach-data
-    #     command: start --insecure
-    #     ports:
-    #     - "26257:26257"
-    #     - "8080:8080"
-    #     networks:
-    #         guppy_net:
-    #             aliases:
-    #             - database_1 
     guppy:
         build: .
-        image: 
         restart: always
         ports:
-            - 80:80
+            - 3000:3000
         environment:
             - SERVER_ADDRESS=0.0.0.0
             - SERVER_PORT=3000
@@ -27,12 +13,5 @@ services:
             - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
             - OS_URLS=localhost:32771,localhost:32772,localhost:32773
             - OS_DIAL_TIMEOUT=5
-            - PASSPHRASE=
-        networks:
-            guppy_net:
-                aliases:
-                - guppy
-        
-networks:
-    guppy_net:
-        driver: bridge 
+            - PASSPHRASE=z4yH36a6zerhfE5427ZV
+        command: air

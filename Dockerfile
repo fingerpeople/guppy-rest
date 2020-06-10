@@ -1,13 +1,13 @@
-FROM golang:latest AS builder
+FROM golang:1.13-alpine AS builder
 
+RUN apk update && \
+    apk upgrade && \
+    apk add curl make \
+    && curl -fLo /usr/local/bin/air https://git.io/linux_air  \
+    && chmod +x /usr/local/bin/air \
+    && mkdir -p /app 
+    
 WORKDIR /app
-COPY . .
+COPY    . .
 
-RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o main -ldflags '-w -s' guppy-rest/src/main.go
-
-############################
-# STEP 2 build a small image
-############################
-FROM scratch
-
-COPY --from=builder /app /usr/bin
+EXPOSE 3000

@@ -1,0 +1,17 @@
+FROM golang:1.13-alpine AS builder
+
+RUN mkdir -p /app
+WORKDIR /app
+
+COPY    . .
+
+RUN rm -rf tools database buildspecs env-* \
+    && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -tags netgo -ldflags '-w' -o guppy src/main.go
+
+FROM alpine:3.7
+RUN apk add tzdata \
+    && export GIN_MODE=release
+COPY --from=builder /app/ /opt/guppy/
+WORKDIR /opt/guppy
+EXPOSE 3000
+ENTRYPOINT ["/opt/guppy/guppy", "-e", "production"]
