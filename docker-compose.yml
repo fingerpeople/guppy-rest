@@ -4,7 +4,7 @@ services:
     etcd1:
         image: bitnami/etcd:3
         ports:
-          - 2379:2379
+          - 2377:2379
         environment:
           - ALLOW_NONE_AUTHENTICATION=yes
           - ETCD_NAME=etcd1
@@ -18,7 +18,7 @@ services:
     etcd2:
         image: bitnami/etcd:3
         ports:
-          - 2379:2379
+          - 2378:2379
         environment:
           - ALLOW_NONE_AUTHENTICATION=yes
           - ETCD_NAME=etcd2
@@ -53,7 +53,7 @@ services:
             - SERVER_PORT=3000
             - SERVER_TIMEZONE=Asia/Jakarta
             - SWAGGER_SERVER_ADDRESS=http://0.0.0.0
-            - OS_URLS=etcd1:2379,etcd2:2379,etcd3:2379
+            - OS_URLS=etcd1:2377,etcd2:2378,etcd3:2379
             - OS_DIAL_TIMEOUT=5
             - PASSPHRASE=z4yH36a6zerhfE5427ZV
         command: air
