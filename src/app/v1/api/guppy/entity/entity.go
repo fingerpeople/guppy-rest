@@ -24,6 +24,6 @@ type ParametersRequest struct {
 type GetResponse struct {
 	Path     string `json:"path"`
 	Value    string `json:"value"`
-	Revision int64  `json:"revision,omitempty"`
+	Revision int64  `json:"revision"`
 	Version  int64  `json:"version"`
 }

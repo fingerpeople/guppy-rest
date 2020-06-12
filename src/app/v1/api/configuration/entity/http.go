@@ -8,14 +8,14 @@ type ConfigurationResponse struct {
 
 // AddUserConfigRequest ...
 type AddUserConfigRequest struct {
-	User     string `form:"user" json:"user"`
+	User     string `form:"username" json:"username"`
 	Password string `form:"password" json:"password"`
 	Roles    string `form:"role" json:"role"`
 }
 
 // ConfigurationUserRequest ...
 type ConfigurationUserRequest struct {
-	User     string `form:"user" json:"user"`
+	User     string `form:"username" json:"username"`
 	Password string `form:"password" json:"password"`
 }
 

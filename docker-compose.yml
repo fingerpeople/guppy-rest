@@ -56,4 +56,6 @@ services:
             - OS_URLS=etcd1:2377,etcd2:2378,etcd3:2379
             - OS_DIAL_TIMEOUT=5
             - PASSPHRASE=z4yH36a6zerhfE5427ZV
+        volumes: 
+          - .:/app
         command: air
